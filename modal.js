@@ -29,8 +29,12 @@ function launchModal() {
   let first = document.getElementById('first');
   // Take value
   first.addEventListener('input', () => {
-    //Display value
+    // Display value
     console.log(first.value);
+    // checker champs de formulaire
+    if (first.value < 2) {
+      // j'affiche une erreur
+    }
   });
 
   // ====================== Last Name // One element
@@ -40,6 +44,9 @@ function launchModal() {
   last.addEventListener('input', () => {
     //Display value
     console.log(last.value);
+    if (last.value < 2) {
+      // j'affiche une erreur
+    }
   });
 
   // ====================== Email // One element
@@ -49,6 +56,11 @@ function launchModal() {
   email.addEventListener('input', () => {
     //Display value
     console.log(email.value);
+    // verif avec regex ou email natif
+    isValidEmail = true;
+    if (!isValidEmail) {
+      // j'affiche une erreur
+    }
   });
 
   // ====================== Bithday
@@ -59,6 +71,9 @@ function launchModal() {
     let birthdate = birthdateInput.value;
     //Display value
     console.log(birthdate);
+    if (!birthdate) {
+      // j'affiche une erreur
+    }
   });
 
   // ====================== Participation Number
@@ -91,6 +106,9 @@ function launchModal() {
   termsCheckbox.addEventListener('change', () => {
     //Display value
     console.log(termsCheckbox.checked);
+    if (!termsCheckbox.checked) {
+      // j'affiche un message d'erreur
+    }
   });
 
   // ====================== Newsletter
@@ -102,3 +120,15 @@ function launchModal() {
     console.log(newsletterCheckbox.checked);
   });
 }
+
+
+const form = document.querySelector('form[name="reserve"]');
+form.addEventListener('submit', function(e) {
+  e.preventDefault();
+  console.log('form submit!')
+  // checker les champs
+  // si erreur
+    // affiche erreur et return false
+  //si ok
+    // afiche le message de confirmation et console.log des données
+})

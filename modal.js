@@ -40,32 +40,24 @@ function launchModal() {
     /////////////////// Prénom
     // verification du prénom
     let first = document.getElementById('first');
-    let firstError = document.getElementById('firstError');
     // si erreur
     // affiche erreur et return false
+    first.closest('.formData').dataset.errorVisible = false;
     if (first.value.length < 2) {
-      firstError.textContent = 'Le prénom doit contenir au moins 2 lettres';
-      firstError.style.display = 'block'; 
-      console.log('Le prénom doit contenir au moins 2 lettres');
       isValidForm = false;
-      first.parentElement.classList.add('invalid');
-    } else {
-      firstError.textContent = '';
-      firstError.style.display = 'none';
-      console.log(first.value);
-    }
+      first.closest('.formData').dataset.errorVisible = true;
+    } 
     
     /////////////////// Nom de Famille
     // vérification du Nom de Famille
     let last = document.getElementById('last');
     // si erreur
     // affiche erreur et return false
+    last.closest('.formData').dataset.errorVisible = false;
     if (last.value.length < 2) {
-      console.log('Le nom doit contenir au moins 2 lettres');
+      last.closest('.formData').dataset.errorVisible = true;
       isValidForm = false
-    } else {
-      console.log(last.value) 
-    }
+    } 
 
     /////////////////// Email
     // vérification de l'email
@@ -74,8 +66,6 @@ function launchModal() {
     if (!validateEmail(email.value)) {
       console.log("L'email est incorrect");
       isValidForm = false;
-    } else {
-      console.log(email.value) 
     }
 
     /////////////////// Bithday
@@ -85,9 +75,7 @@ function launchModal() {
     if (!birthdateInput.value) {
       console.log("La date de naissance est incorrect");
       isValidForm = false;
-    } else {
-      console.log(birthdateInput.value) 
-    }
+    } 
 
     /////////////////// City
     // Voir si la ville a été selectionné
@@ -96,9 +84,6 @@ function launchModal() {
     if (!selectedCity) {
       console.log('Veuillez sélectionner une ville');
       isValidForm = false;
-    } else {
-      console.log(selectedCity.value);
-      citySelected = true;
     }
 
     /////////////////// Conditions d'utilisation
@@ -108,23 +93,15 @@ function launchModal() {
     if (!termsCheckbox.checked) {
       console.log("Vous devez accepter nos conditions d'utilisations pour continuer");
       isValidForm = false;
-    } else {
-      termsCheckbox = true
-    }
+    } 
 
     // ============== Validation Formulaire =============//
     // Affichage du message de confirmation si formulaire valide et submit
-    if (isValidForm && !formSubmitted) {
-      console.log('Form submit');
-      formSubmitted = true;
-      form.submit();
-      const successModal = document.getElementById('successModal');
-
-      successModal.classList.add('success');
-      successModal.style.display = 'block';
-      
-      form.reset();
+    if (isValidForm) {
+      form.style.display = 'none';
+      document.querySelector('.confirm').style.display = 'block'
     }
+    return false;
   });
 
   // Ecouteurs d'evênement à chaque champs pour lire en direct à la saisi 

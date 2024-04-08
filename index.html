@@ -57,6 +57,7 @@
           <span class="close"></span>
           <!--Form-->
           <div class="modal-body">
+            <p class="confirm">Merci pour votre inscription</p>
             <form
               name="reserve"
               action="index.html"
@@ -64,7 +65,7 @@
             >
             <!--First Name-->
               <div
-                class="formData">
+                class="formData" data-error="Le prénom doit contenir au moins 2 lettres">
                 <label for="firstName">Prénom</label><br>
                 <input
                   class="text-control"
@@ -74,11 +75,10 @@
                   minlength="2"
                   placeholder="Entrez votre Prénom"
                 /><br>
-                <span id="firstError" class="error invalid">Le prénom doit contenir au moins 2 lettres</span>
               </div>
               <!--Nom-->
               <div
-                class="formData">
+                class="formData" data-error="Le nom doit contenir au moins 2 lettres">
                 <label>Nom</label><br>
                 <input
                   class="text-control"
@@ -90,7 +90,7 @@
               </div>
               <!--E-mail-->
               <div
-                class="formData">
+                class="formData" data-error="email incorrect">
                 <label>E-mail</label><br>
                 <input
                   class="text-control"

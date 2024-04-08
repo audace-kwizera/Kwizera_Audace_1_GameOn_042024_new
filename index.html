@@ -32,11 +32,11 @@
     <main>
       <div class="hero-section">
         <div class="hero-content">
-          <h1 class="hero-headline">
+          <h1 class="hero-headline cover__title">
             Marathon national<br>
             de jeux vidéos
           </h1>
-          <p class="hero-text">
+          <p class="hero-text cover__text">
             Vous aimez jouer ? Notre prochain évènement gaming est ouvert
             aux réservations... Places limitées !
           </p>
@@ -74,6 +74,7 @@
                   minlength="2"
                   placeholder="Entrez votre Prénom"
                 /><br>
+                <span id="firstError" class="error invalid">Le prénom doit contenir au moins 2 lettres</span>
               </div>
               <!--Nom-->
               <div
@@ -224,7 +225,7 @@
           <div id="successModal" class="modal">
             <div class="modal-content">
               <span class="close">&times;</span>
-              <p>Votre formulaire a été soumis avec succès !</p>
+              <p class="confirm">Merci pour votre inscription</p>
             </div>
           </div>
         </div>

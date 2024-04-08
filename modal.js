@@ -7,12 +7,19 @@ function editNav() {
   }
 }
 
+let citySelected = false;
+let formSubmitted = false;
+
+// Fonction de validation de l'email
+function validateEmail(email) {
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailPattern.test(email);
+}
 
 // DOM Elements
 const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
-
 
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
@@ -22,83 +29,89 @@ modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 function launchModal() {
   modalbg.style.display = "block";
 
-  // Catch Data
+// Validation du formulaire
+  const form = document.querySelector('form[name="reserve"]');
+  form.addEventListener('submit', function(e) {
+    // Empêcher le comportement par défault
+    e.preventDefault();
+    // Vérification des champs
+    let isValidForm = true;
 
-  // ====================== First Name //  One element
-  // Select element
-  let first = document.getElementById('first');
-  // Take value
-  first.addEventListener('input', () => {
-    //Display value
-    console.log(first.value);
+    /////////////////// Prénom
+    // verification du prénom
+    let first = document.getElementById('first');
+    // si erreur
+    // affiche erreur et return false
+    first.closest('.formData').dataset.errorVisible = false;
+    if (first.value.length < 2) {
+      isValidForm = false;
+      first.closest('.formData').dataset.errorVisible = true;
+    } 
+    
+    /////////////////// Nom de Famille
+    // vérification du Nom de Famille
+    let last = document.getElementById('last');
+    // si erreur
+    // affiche erreur et return false
+    last.closest('.formData').dataset.errorVisible = false;
+    if (last.value.length < 2) {
+      last.closest('.formData').dataset.errorVisible = true;
+      isValidForm = false
+    } 
+
+    /////////////////// Email
+    // vérification de l'email
+    let email = document.getElementById('email');
+    // affiche erreur et return false
+    if (!validateEmail(email.value)) {
+      console.log("L'email est incorrect");
+      isValidForm = false;
+    }
+
+    /////////////////// Bithday
+    // vérification de la date de naissance
+    let birthdateInput = document.getElementById('birthdate');
+    // affiche erreur et return false
+    if (!birthdateInput.value) {
+      console.log("La date de naissance est incorrect");
+      isValidForm = false;
+    } 
+
+    /////////////////// City
+    // Voir si la ville a été selectionné
+    let cityInputs = document.querySelectorAll("input[name='location']");
+    let selectedCity = Array.from(cityInputs).find(input => input.checked);
+    if (!selectedCity) {
+      console.log('Veuillez sélectionner une ville');
+      isValidForm = false;
+    }
+
+    /////////////////// Conditions d'utilisation
+    // Conditions d'utilisations checked
+    let termsCheckbox = document.getElementById('checkbox1');
+    // affiche erreur et return false
+    if (!termsCheckbox.checked) {
+      console.log("Vous devez accepter nos conditions d'utilisations pour continuer");
+      isValidForm = false;
+    } 
+
+    // ============== Validation Formulaire =============//
+    // Affichage du message de confirmation si formulaire valide et submit
+    if (isValidForm) {
+      form.style.display = 'none';
+      document.querySelector('.confirm').style.display = 'block'
+    }
+    return false;
   });
 
-  // ====================== Last Name // One element
-   //Select element
-  let last = document.getElementById('last');
-  // Take value
-  last.addEventListener('input', () => {
-    //Display value
-    console.log(last.value);
-  });
+  // Ecouteurs d'evênement à chaque champs pour lire en direct à la saisi 
+  const formFields = document.querySelectorAll('.formData input, .formData textarea');
 
-  // ====================== Email // One element
-   //Select element
-  let email = document.getElementById('email');
-  // Take value
-  email.addEventListener('input', () => {
-    //Display value
-    console.log(email.value);
-  });
-
-  // ====================== Bithday
-  //Select element
-  let birthdateInput = document.getElementById('birthdate');
-  birthdateInput.addEventListener('input', () => {
-    // Take value
-    let birthdate = birthdateInput.value;
-    //Display value
-    console.log(birthdate);
-  });
-
-  // ====================== Participation Number
-   //Select element
-   let participationInput = document.getElementById('quantity');
-   // Take value live
-   participationInput.addEventListener('input', () => {
-     let participation = participationInput.value;
-     //Display value
-     console.log(participation);
-   });
-
-  // ====================== City
-  //Select element
-  let cityInputs = document.querySelectorAll('input[name="location"]');
-   // Take value live
-  cityInputs.forEach(input => {
-    input.addEventListener('change', () => {
-      //Display value
-      if (input.checked) {
-        console.log(input.value);
-      }
+  formFields.forEach(field => {
+    field.addEventListener('input', () => {
+      console.log(field.id + ':', field.value);
     });
   });
-
-  // ====================== Condition
-  //Select element
-  let termsCheckbox = document.getElementById('checkbox1');
-  // Take value live
-  termsCheckbox.addEventListener('change', () => {
-    //Display value
-    console.log(termsCheckbox.checked);
-  });
-
-  // ====================== Newsletter
-  //Select element
-  let newsletterCheckbox = document.getElementById('checkbox2');
-  // Take value live
-  newsletterCheckbox.addEventListener('change', () => {
-    //Display value
-    console.log(newsletterCheckbox.checked);
-  });
 }
+
+  

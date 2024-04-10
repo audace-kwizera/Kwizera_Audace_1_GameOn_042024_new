@@ -1,0 +1,83 @@
+.main-navbar {
+    a:hover {
+        text-decoration: underline;
+        text-underline-offset: 5px;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .topnav {
+        display: flex;
+        z-index: 99;
+        position: fixed;
+        height: 70px;
+        width: 100vw;
+        margin: 0;
+        background-color: #fff;
+        padding: 20px 40px;
+        justify-content: space-between;
+    }
+    .header-logo {
+        width: 130px;
+        img {
+            width: 130px;
+        }
+    }
+    .icon {
+        &__close {
+            &__responsive {
+                margin: 0!important;
+                padding: 0!important;
+                /* top: -20vh!important; */
+                right: -20vh!important;
+            }
+        }
+    }
+    .main-navbar::before{
+        display: none;
+    }
+    .main-navbar {  
+        display: flex;
+        width: 10vw;
+        justify-content: space-between;
+        align-items: center;
+        flex-direction: column;
+        top: 0;
+        right: 0;
+        row-gap: 0.5rem;
+        text-align: center;
+        position: fixed;
+        transition: top 0.4s;
+        padding-block: 0.6rem;
+        background-color: white;
+        height: 10vh;
+        .icon:hover {
+            background: transparent;
+            color: black;
+        }
+    }
+    .responsive {
+        .main-navbar {
+            display: flex;
+            width: 100%!important;
+            justify-content: space-between;
+            align-items: center;
+            flex-direction: column;
+            top: 0;
+            right: 0;
+            row-gap: 0.5rem;
+            text-align: center;
+            position: fixed;
+            transition: top 0.4s;
+            padding-block: 0.6rem;
+            background-color: white!important;
+            height: 50vh;
+            .icon {
+                top: -20vh !important;
+                height: 50vh !important;         
+                width: 10vw!important;
+                right: 0!important;
+            }
+        }
+    }
+}

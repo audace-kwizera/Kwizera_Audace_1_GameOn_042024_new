@@ -1,5 +1,19 @@
-.btn-signup {
+.btn-signup, .btn-submit {
     font-size: 0.7rem;
     padding: 10px 23px;
     width: 50%;
 }
+
+@media screen and (max-width: 800px) {
+    .btn-signup {
+        margin: 70px auto 0px!important;
+        padding: 12px 0!important;
+    }
+}
+
+@media screen and (max-width: 300px) {
+    .btn-signup {
+        padding: 12px 0!important;
+    }
+}
+

@@ -18,12 +18,12 @@
     </div>
     <div class="main-navbar">
       
-      <a href="#" class="active"><span>Accueil</span></a>
-      <a href="#"><span>Détails de l'évènement</span></a>
+      <!-- <a href="#"><span>Accueil</span></a> -->
+      <a href="#" class="active"><span>Détails de l'évènement</span></a>
       <a href="#"><span>À propos</span></a>
       <a href="#"><span>Contact</span></a>
       <a href="#"><span>Évènements passés</span></a>
-      <a href="javascript:void(0);" class="icon" onclick="editNav()">
+      <a href="javascript:void(0);" class="icon icon__close__responsive" onclick="editNav()">
         <i class="fa fa-bars"></i>
       </a>
     </div>
@@ -57,7 +57,16 @@
           <span class="close"></span>
           <!--Form-->
           <div class="modal-body">
-            <p class="confirm">Merci pour votre inscription</p>
+            <p class="confirm confirm__text">Merci pour<br />votre inscription</p>
+            <div>
+              <input
+              class="btn-confirm btn-submit button confirm"
+              type="submit"
+              value="Fermer"
+              onclick="closeModal()"
+          />
+            </div>
+            
             <form
               name="reserve"
               action="index.html"
@@ -102,7 +111,7 @@
               </div>
               <!--Birthday-->
               <div
-                class="formData">
+                class="formData" data-error="La date de naissance est incorrect">
                 <label>Date de naissance</label><br>
                 <input
                   class="text-control"
@@ -120,7 +129,7 @@
               <!--City-->
               <p class="text-label">A quel tournoi souhaitez-vous participer cette année ?</p>
               <div
-                class="formData">
+                class="formData" data-error="Veuillez sélectionner une ville">
                 <input
                   class="checkbox-input"
                   type="radio"
@@ -190,7 +199,7 @@
               </div>
 
               <div
-                class="formData">
+                class="formData" data-error="Vous devez accepter nos conditions d'utilisations pour continuer">
                 <input
                   class="checkbox-input"
                   type="checkbox"
@@ -222,12 +231,12 @@
           </div>
 
           <!--Validation Popup-->
-          <div id="successModal" class="modal">
+          <!-- <div id="successModal" class="modal">
             <div class="modal-content">
               <span class="close">&times;</span>
               <p class="confirm">Merci pour votre inscription</p>
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
     </main>

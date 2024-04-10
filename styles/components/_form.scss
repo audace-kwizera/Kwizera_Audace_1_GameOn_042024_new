@@ -8,4 +8,24 @@
     display: none;
 }
 
+.confirm {
+    &__text {
+        height: 100vh;
+        align-items: center;
+        text-align: center;
+        align-content: center;
+    }
+}
 
+@media screen and (max-width: 800px) {
+    .modal-body {
+        padding: 5rem 1rem 1rem;
+    }
+    .close {
+        top: 15vh;
+    }
+}
+
+@media screen and (max-width: 540px) {
+
+}

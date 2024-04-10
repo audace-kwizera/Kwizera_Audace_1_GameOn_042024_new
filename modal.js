@@ -28,6 +28,7 @@ modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 /// launch modal form
 function launchModal() {
   modalbg.style.display = "block";
+  
 
 // Validation du formulaire
   const form = document.querySelector('form[name="reserve"]');
@@ -63,8 +64,9 @@ function launchModal() {
     // vérification de l'email
     let email = document.getElementById('email');
     // affiche erreur et return false
+    email.closest('.formData').dataset.errorVisible = false;
     if (!validateEmail(email.value)) {
-      console.log("L'email est incorrect");
+      email.closest('.formData').dataset.errorVisible = true;
       isValidForm = false;
     }
 
@@ -72,8 +74,9 @@ function launchModal() {
     // vérification de la date de naissance
     let birthdateInput = document.getElementById('birthdate');
     // affiche erreur et return false
+    birthdateInput.closest('.formData').dataset.errorVisible = false;
     if (!birthdateInput.value) {
-      console.log("La date de naissance est incorrect");
+      birthdateInput.closest('.formData').dataset.errorVisible = true;
       isValidForm = false;
     } 
 
@@ -81,8 +84,13 @@ function launchModal() {
     // Voir si la ville a été selectionné
     let cityInputs = document.querySelectorAll("input[name='location']");
     let selectedCity = Array.from(cityInputs).find(input => input.checked);
+    cityInputs.forEach(input => {
+      input.closest('.formData').dataset.errorVisible = false;
+    })
     if (!selectedCity) {
-      console.log('Veuillez sélectionner une ville');
+      cityInputs.forEach(input => {
+        input.closest('.formData').dataset.errorVisible = true;
+      })
       isValidForm = false;
     }
 
@@ -90,8 +98,9 @@ function launchModal() {
     // Conditions d'utilisations checked
     let termsCheckbox = document.getElementById('checkbox1');
     // affiche erreur et return false
+    termsCheckbox.closest('.formData').dataset.errorVisible = false;
     if (!termsCheckbox.checked) {
-      console.log("Vous devez accepter nos conditions d'utilisations pour continuer");
+      termsCheckbox.closest('.formData').dataset.errorVisible = true;
       isValidForm = false;
     } 
 
@@ -99,12 +108,13 @@ function launchModal() {
     // Affichage du message de confirmation si formulaire valide et submit
     if (isValidForm) {
       form.style.display = 'none';
-      document.querySelector('.confirm').style.display = 'block'
+      document.querySelector('.confirm').style.display = 'block';
+      document.querySelector('.btn-confirm').style.display = 'block';
     }
     return false;
   });
 
-  // Ecouteurs d'evênement à chaque champs pour lire en direct à la saisi 
+  // Ecouteurs d'evênement à chaque champs pour lire en direct à la saisie
   const formFields = document.querySelectorAll('.formData input, .formData textarea');
 
   formFields.forEach(field => {
@@ -114,4 +124,16 @@ function launchModal() {
   });
 }
 
-  
+// ==================================== Fermeture du modal
+// Fonction pour fermer la modal
+function closeModal() {
+  modalbg.style.display = "none";
+}
+
+// Sélection de tous les éléments avec la classe close
+const closeButtons = document.querySelectorAll(".close");
+
+// Event à chaque bouton close
+closeButtons.forEach(button => {
+  button.addEventListener('click', closeModal);
+});

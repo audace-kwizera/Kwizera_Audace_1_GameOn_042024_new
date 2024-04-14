@@ -110,6 +110,10 @@ function launchModal() {
       form.style.display = 'none';
       document.querySelector('.confirm').style.display = 'block';
       document.querySelector('.btn-confirm').style.display = 'block';
+      console.log("Valeurs saisies :");
+      formFields.forEach(field => {
+        console.log(field.name + ':', field.value);
+      })
     }
     return false;
   });
